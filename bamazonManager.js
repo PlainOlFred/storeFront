@@ -37,6 +37,7 @@ function managerMenu () {
     switch(ans.managerTask) {
       case 'View Products':
         viewProducts();
+       
         break;
       case 'View Low Inventory':
         viewLowInventory();
@@ -54,11 +55,38 @@ function managerMenu () {
 
 
 function viewProducts() {
-  console.log('does task')
+
+  query = 'SELECT * FROM products'
+  connection.query(query, (err, res) => {
+    if (err) throw err;
+
+    for(let item of res) {
+        
+      for(let [key, value] of Object.entries(item)) {
+        console.log(`${key} : ${value}`);
+      };
+      console.log('\n');
+    }
+     goBack();
+  })
+
+ 
 };
 
 function viewLowInventory() {
-  console.log('does task')
+  query = 'SELECT * FROM products WHERE stock_quantity < 5'
+  connection.query(query, (err, res) => {
+    if (err) throw err;
+
+    for(let item of res) {
+        
+      for(let [key, value] of Object.entries(item)) {
+        console.log(`${key} : ${value}`);
+      };
+      console.log('\n');
+    }
+     goBack();
+  })
 };
 
 function addInventory() {
@@ -68,3 +96,17 @@ function addInventory() {
 function addNewProduct() {
   console.log('does task')
 };
+
+function goBack() {
+  inquirer
+  .prompt([
+    {
+      type: 'confirm',
+      name: 'mangerMenu',
+      message: 'return to menu'
+    }
+  ])
+  .then( (ans) => {
+    managerMenu();
+  })
+}

@@ -6,7 +6,6 @@ let
   item;
 
   
-  
 const connection = mysql.createConnection( {
   host: "localhost",
   port: 3306,
@@ -19,6 +18,7 @@ connection.connect((err) => {
   if (err) throw err;
   console.log("connected as id " + connection.threadId + "\n");
   listStock();
+
 });
 
 function listStock() {
@@ -34,10 +34,11 @@ function listStock() {
       };
       console.log('\n');
     }
-    // connection.end();
+    
+      buyProduct();
   })
   
-  buyProduct();
+
   
 };
 
@@ -56,7 +57,7 @@ function buyProduct() {
     message: `Quantity of  ${'items'} (${'quant'})` //insert product_name & stockquanity
   }
   ])
-  .then(ans => {
+  .then( (ans) => {
     
     query = `SELECT id, product_name, price, stock_quantity FROM products `;
     query += `WHERE id = ${ans.userProductId}`;

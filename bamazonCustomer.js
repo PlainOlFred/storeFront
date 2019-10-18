@@ -63,11 +63,11 @@ function buyProduct() {
     query += `WHERE id = ${ans.userProductId}`;
 
     connection.query(query, (err, res) => {
-      if (err) throw err;
+      if(err) throw err;
       item = res[0];
       
 
-      if (ans.userProductQuantity > item.stock_quantity) {
+      if(ans.userProductQuantity > item.stock_quantity) {
         console.log(`\nInsufficient quantity!`);
       } else {
         updatedQuantity(ans.userProductId, ans.userProductQuantity, item.stock_quantity);
@@ -98,7 +98,8 @@ function updatedQuantity(id, quant, stock_quantity) {
     })
 
     
-
 }
+
+module.exports = listStock
 
 

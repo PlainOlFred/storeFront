@@ -54,6 +54,8 @@ function managerMenu () {
 }
 
 
+
+
 function viewProducts() {
 
   query = 'SELECT * FROM products'
@@ -90,8 +92,66 @@ function viewLowInventory() {
 };
 
 function addInventory() {
-  console.log('does task')
+  console.log("-----BELOW ITEMS ARE IN STOCK-----\n");
+  query = 'SELECT * FROM products'
+  connection.query(query, (err, res) => {
+    if (err) throw err;
+
+    for(let item of res) {
+        
+      for(let [key, value] of Object.entries(item)) {
+        console.log(`${key} : ${value}`);
+      };
+      console.log('\n');
+    }
+    updateInvetory();
+  })
+
+}
+
+
+function updateInvetory() {
+  
+  inquirer
+  .prompt([
+    {
+      type: 'input',
+      name: 'managerProductId',
+      message: 'Enter Id of prouduct to update'
+    },
+    {
+      type: 'input',
+      name: 'managerUpdateQuant',
+      message: `Enter new Quanity for ###PRODUCT###`
+    },
+
+  ])
+
+  .then((ans) => {
+    query = `UPDATE products SET ? WHERE ?`;
+    connection.query(query, 
+    [
+      {
+        stock_quantity: ans.managerUpdateQuant
+      },
+      {
+        id: ans.managerProductId
+      }
+    ],
+    (err, res) => {
+      if (err) throw err;
+      console.log("###product### updated!\n");
+      goBack();
+
+    });
+   
+  console.log(`\n`);
+  
+    
+  });
+
 };
+
 
 function addNewProduct() {
   console.log('does task')

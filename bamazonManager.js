@@ -3,7 +3,8 @@ const
   inquirer = require('inquirer');
 let 
   query,
-  item;
+  item,
+  viewInfo ='id, product_name, department_name, price, stock_quantity';
 
 const connection = mysql.createConnection( {
   host: "localhost",
@@ -57,7 +58,7 @@ function managerMenu () {
 
 function viewProducts() {
 
-  query = 'SELECT * FROM products'
+  query = `SELECT ${viewInfo} FROM products`
   connection.query(query, (err, res) => {
     if (err) throw err;
 
@@ -77,7 +78,7 @@ function viewProducts() {
 
 
 function viewLowInventory() {
-  query = 'SELECT * FROM products WHERE stock_quantity < 5'
+  query = `SELECT ${viewInfo} FROM products WHERE stock_quantity < 5`
   connection.query(query, (err, res) => {
     if (err) throw err;
 
@@ -94,7 +95,7 @@ function viewLowInventory() {
 
 function addInventory() {
   console.log("-----BELOW ITEMS ARE IN STOCK-----\n");
-  query = 'SELECT * FROM products'
+  query = `SELECT ${viewInfo} FROM products`
   connection.query(query, (err, res) => {
     if (err) throw err;
 

@@ -55,7 +55,6 @@ function managerMenu () {
 
 
 
-
 function viewProducts() {
 
   query = 'SELECT * FROM products'
@@ -74,6 +73,8 @@ function viewProducts() {
 
  
 };
+
+
 
 function viewLowInventory() {
   query = 'SELECT * FROM products WHERE stock_quantity < 5'
@@ -122,17 +123,20 @@ function updateInvetory() {
     {
       type: 'input',
       name: 'managerUpdateQuant',
-      message: `Enter new Quanity for ###PRODUCT###`
+      message: `Enter New Total Quanity`
     },
 
   ])
 
   .then((ans) => {
     query = `UPDATE products SET ? WHERE ?`;
+
+    
     connection.query(query, 
     [
       {
         stock_quantity: ans.managerUpdateQuant
+
       },
       {
         id: ans.managerProductId
@@ -154,8 +158,51 @@ function updateInvetory() {
 
 
 function addNewProduct() {
-  console.log('does task')
+inquirer
+  .prompt([
+    {
+      type: 'input',
+      name: 'newProductName',
+     
+      message: 'Enter New Product Name'
+    },
+    {
+      type: 'input',
+      name: 'newProductDepartment',
+      message: `Enter New Product Department`
+    },
+    {
+      type: 'input',
+      name: 'newProductPrice',
+      message: 'Enter New Product Price'
+    },
+    {
+      type: 'input',
+      name: 'newProductQuantity',
+      message: `Enter New Starting Quantity`
+    },
+
+  ])
+
+  .then((ans) => {
+    query = `INSERT INTO products (product_name, department_name, price, stock_quantity) `;
+    query +=  `VALUES ('${ans.newProductName}', '${ans.newProductDepartment}', ${ans.newProductPrice}, ${ans.newProductQuantity})`
+
+    connection.query(query, (err, res) => {
+      if (err) throw err;
+      console.log("###product### Added!\n");
+      goBack();
+
+    });
+   
+  console.log(`\n`);
+  
+    
+  });
+
+
 };
+
 
 function goBack() {
   inquirer
@@ -170,3 +217,4 @@ function goBack() {
     managerMenu();
   })
 }
+

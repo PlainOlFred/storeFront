@@ -23,7 +23,7 @@ connection.connect((err) => {
 
 function listStock() {
   console.log("-----BELOW ITEMS ARE IN STOCK-----\n");
-  query = 'SELECT * FROM products'
+  query = 'SELECT id, product_name, department_name, price, stock_quantity FROM products'
   connection.query(query, (err, res) => {
     if (err) throw err;
 
@@ -59,11 +59,12 @@ function buyProduct() {
   ])
   .then( (ans) => {
     
-    query = `SELECT id, product_name, price, stock_quantity FROM products `;
+    query = `SELECT id, product_name, price, stock_quantity, product_sales FROM products `;
     query += `WHERE id = ${ans.userProductId}`;
 
     connection.query(query, (err, res) => {
       if(err) throw err;
+
       item = res[0];
       
 
@@ -73,6 +74,8 @@ function buyProduct() {
         updatedQuantity(ans.userProductId, ans.userProductQuantity, item.stock_quantity);
         console.log(`\n${ans.userProductQuantity}`, item.product_name);
         console.log(`Your Total: ${ans.userProductQuantity * item.price}`)
+
+        updatedProductSales(ans.userProductId, ans.userProductQuantity, item.price, item.product_sales)
       }
 
       connection.end();
@@ -83,15 +86,10 @@ function buyProduct() {
 
 function updatedQuantity(id, quant, stock_quantity) {
   
-  // query = `SELECT id, stock_quantity FROM products `
+  stock_quantity = stock_quantity - quant;
   query = `UPDATE products SET ? WHERE ?`;
   connection.query(query, 
-    [{
-      stock_quantity: stock_quantity - quant
-    },
-    {
-      id: id
-    }],
+    [{stock_quantity},{id}],
     (err, res) => {
       if (err) throw err;
 
@@ -100,6 +98,19 @@ function updatedQuantity(id, quant, stock_quantity) {
     
 }
 
-module.exports = listStock
+ function updatedProductSales(id, quant, price, sales) {
+   
+   let product_sales = (quant * price);
 
+   query = `UPDATE products SET ? WHERE ?`;
+   connection.query(query, 
+   [{product_sales},{id}],
+   (err, res) => {
+     if(err) throw err;
+
+   }
+   )
+
+ }
+      
 

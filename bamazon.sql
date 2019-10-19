@@ -41,4 +41,13 @@ INSERT INTO products (product_name, department_name, price, stock_quantity)
 INSERT INTO products (product_name, department_name, price, stock_quantity) 
   VALUES ('Biker Boots', 'Clothing', 2.50, 100);
 
+DROP TABLE IF EXISTS departments;
+CREATE TABLE departments (
+  department_id INTEGER(10) AUTO_INCREMENT,
+  department_name VARCHAR(50),
+  over_head_costs DECIMAL(10,2),
+  PRIMARY KEY (department_id, department_name)
+);
 
+ALTER TABLE products
+ADD COLUMN product_sales INT NULL AFTER stock_quantity;

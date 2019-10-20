@@ -51,3 +51,13 @@ CREATE TABLE departments (
 
 ALTER TABLE products
 ADD COLUMN product_sales INT NULL AFTER stock_quantity;
+
+SELECT 
+	department_id 'Department id',
+	department_name 'Department',
+	over_head_costs 'OHC',
+	SUM(product_sales) productSales
+FROM products p
+LEFT JOIN departments 
+	USING (department_name)
+GROUP BY department_id,department_name, OHC ;

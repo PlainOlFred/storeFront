@@ -62,7 +62,7 @@
    - [inquirer](https://www.npmjs.com/package/inquirer)
 
 
-## Usage
+### Usage
 .
   1. Intialize package.json `$ npm init -y`
 
@@ -78,6 +78,30 @@
      - Supervisor View:
           - `$ node bamazonSupervisor.js`
   6. Follow Command Prompts
+  
+ ### Demo
+ #### Customer view and Buy
+  ![Customer](https://user-images.githubusercontent.com/52435014/67153338-1bbac600-f2ad-11e9-8ae6-50f322979eaa.gif)
+ #### View Inventory (Manager)
+ ![viewinventory](https://user-images.githubusercontent.com/52435014/67153361-6fc5aa80-f2ad-11e9-9361-d10180d9766e.gif)
+#### View Low Inventory (Manager)
+![viewlowinventory](https://user-images.githubusercontent.com/52435014/67153379-bf0bdb00-f2ad-11e9-96c1-af1d6b060f40.gif)
+#### Add Inventory (Manager)
+![addinventory](https://user-images.githubusercontent.com/52435014/67153388-eb275c00-f2ad-11e9-847e-c396d0d1a54b.gif)
+#### Add Product (Manager)
+![addproduct](https://user-images.githubusercontent.com/52435014/67153399-11e59280-f2ae-11e9-9b8a-3028d6b7d266.gif)
+#### Create Department (Supervisor)
+![newdepo](https://user-images.githubusercontent.com/52435014/67153412-35a8d880-f2ae-11e9-95c5-aa8c1b887d59.gif)
+#### View Departmentd (Supervisor)
+![viewsupertable](https://user-images.githubusercontent.com/52435014/67153418-55d89780-f2ae-11e9-8ca9-dd465eed6cfe.gif)
+
+
+
+
+  
+
+  
+  
 
     
    

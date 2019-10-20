@@ -33,23 +33,22 @@
     
     * Add New Product - Add product to stock inventory
 
-- - -
 
 ### Supervisor View (Additional Feature)
 
--[X] Create `departments` in `bamazon` database
+- [X] Create `departments` in `bamazon` database
 
--[X] `product_sales` column in `products` table 
+- [X] `product_sales` column in `products` table 
 
--[X] `bamazonSupervisor.js`
+- [X] `bamazonSupervisor.js`
 
--[X] Supervisor menu options
+- [X] Supervisor menu options
 
    * View Product Sales by Department 
    
    * Create New Department 
 
--[X] Display profit by department summary table  `View Product Sales by Department`
+- [X] Display profit by department summary table  `View Product Sales by Department`
     
    
 

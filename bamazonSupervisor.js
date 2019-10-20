@@ -5,7 +5,8 @@ const
 
 let 
   query,
-  item;
+  item,
+  accum;
 
 const connection = mysql.createConnection( {
   host: "localhost",
@@ -48,19 +49,34 @@ function supervisorMenu () {
 }
 
 function viewProductsSalesByDepartment() {
- console.log('ha');
 
-  cosnt table = new Table({
+  
+
+
+  query = `SELECT department_id 'Department id',department_name 'Department', over_head_costs 'OHC', `;
+	query += `SUM(product_sales) productSales `; 
+  query += `FROM products p LEFT JOIN departments USING (department_name) `;
+  query += `GROUP BY department_id,department_name, OHC ;`;
+  connection.query(query, (err, res) => {
+    if (err) throw err;
+    let table = new Table({
     head: ['ID', 'Department', 'Overhead Cost', 'Sales', 'Profit']
-  , colWidths: [100, 200]
-});
+  , colWidths: [7, 33, 10, 10, 10]
+  });
+
+
+    for(row of res) {
+      let rowData = [row['Department id'], row['Department'], row['OHC'], row['productSales']];
+      rowData.push(rowData[3]-rowData[2]); //calculate profit
+      table.push(rowData)
+    }
+
+
+    console.log(table.toString());
+    goBack();
+  })
+  
  
-  // table is an Array, so you can `push`, `unshift`, `splice` and friends
-  table.push(
-    ['First value', 'Second value'],  
-    ['First value', 'Second value']
-) ;
- goBack();
 };
 function createNewDepartment() {
 inquirer

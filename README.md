@@ -1,6 +1,4 @@
-# storeFront
-
-# Node.js & MySQL
+# storeFront (Bamazon)
 
 ### Customer View (MVP)
 
@@ -94,17 +92,3 @@
 ![newdepo](https://user-images.githubusercontent.com/52435014/67153412-35a8d880-f2ae-11e9-95c5-aa8c1b887d59.gif)
 #### View Departmentd (Supervisor)
 ![viewsupertable](https://user-images.githubusercontent.com/52435014/67153418-55d89780-f2ae-11e9-8ca9-dd465eed6cfe.gif)
-
-
-
-
-  
-
-  
-  
-
-    
-   
-
-
-

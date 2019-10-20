@@ -32,6 +32,7 @@
     * Add to Inventory - Update total stock quantity of a product (recount) 
     
     * Add New Product - Add product to stock inventory
+   
 
 
 ### Supervisor View (Additional Feature)
@@ -49,6 +50,35 @@
    * Create New Department 
 
 - [X] Display profit by department summary table  `View Product Sales by Department`
+
+
+
+### Prerequisite
+
+   
+   - [MySQL](https://www.npmjs.com/package/mysql)
+
+   
+   - [inquirer](https://www.npmjs.com/package/inquirer)
+
+
+## Usage
+.
+  1. Intialize package.json `$ npm init -y`
+
+  2. Install node packages 
+   
+  4. Use snippets from `bamazon.sql` to create `bamazon` database.
+  
+  5. Node commmands
+     - Customer View:
+          - `$ node bamazonCustomer.js`
+     - Manager View:
+          - `$ node bamazonManger.js`
+     - Supervisor View:
+          - `$ node bamazonSupervisor.js`
+  6. Follow Command Prompts
+
     
    
 
